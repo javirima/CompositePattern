@@ -12,7 +12,7 @@ public class CompositeProduct extends AbstractProduct {
     private List<AbstractProduct> products = new ArrayList<AbstractProduct>();
     
     public CompositeProduct(String name) {
-        super(name, 0);   
+        super(name, 0, 0,1);   
     }
     
     @Override
@@ -20,6 +20,14 @@ public class CompositeProduct extends AbstractProduct {
         double price = 0d;
         for (AbstractProduct child : products) {
             price += child.getPrice();   
+        }
+        return price; 
+    }
+
+    public double getPriceIva(){
+        double price = 0d;
+        for (AbstractProduct child : products) {
+            price += child.getPriceIva();   
         }
         return price; 
     }

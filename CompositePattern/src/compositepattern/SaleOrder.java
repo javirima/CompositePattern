@@ -26,14 +26,31 @@ public class SaleOrder {
     public double getPrice() {
         double price = 0d;
         for (AbstractProduct child : products) {
-            price += child.getPrice();
+            price += child.getPrice() * child.getCantidad();
         }           
         
         return price;
     }
+
+    public double getPriceIva(){
+        double price = 0d;
+        for (AbstractProduct child : products) {
+            price += child.getPriceIva() * child.getCantidad();   
+        }
+        return price; 
+    }
     
     public void addProduct(AbstractProduct product) {
+        for (AbstractProduct child : products) {
+            if(child.getName().equals(product.getName())){
+                child.setCantidad(child.getCantidad()+1);
+            
+                return;
+            }
+        }
         products.add(product);
+
+        
     }   
 
     public void printOrder() {
@@ -42,12 +59,15 @@ public class SaleOrder {
                 + "\nOrden: " + orderId + "\nCliente: " + customer
                 + "\nProductos:\n"); 
         for (AbstractProduct prod : products) {
-            System.out.println(prod.getName() + "\t\t\t$ "
-                    + formater.format(prod.getPrice()));
+            System.out.println(prod.getCantidad()+ "\t\t" +prod.getName() + "\t\t\t$ "
+                    + formater.format(prod.getPrice())+"\t\t$"+formater.format(prod.getPrice()*prod.getCantidad())+"\t\t\t "
+                     + prod.getIva()*100);
             
         }
     
-        System.out.println("Total: " + formater.format(getPrice()) 
+        System.out.println("Subtotal: " + formater.format(getPrice())
+                +"\n IVA: " + formater.format(getPriceIva())
+                +"\n Total: " + formater.format(getPrice()+ getPriceIva())
                 + "\n=============================================");
     
     }

@@ -9,8 +9,8 @@ public class SimpleProduct extends AbstractProduct
 {       
     protected String brand;       
     
-    public SimpleProduct(String name, double price, String brand) {
-        super(name, price);
+    public SimpleProduct(String name, double price, String brand, double iva, int cantidad) {
+        super(name, price, iva,cantidad);
         this.brand = brand;   
     }
 /** GET and SET */ 
