@@ -11,8 +11,8 @@ import java.util.List;
 public class CompositeProduct extends AbstractProduct {
     private List<AbstractProduct> products = new ArrayList<AbstractProduct>();
     
-    public CompositeProduct(String name) {
-        super(name, 0, 0,1);   
+    public CompositeProduct(String name, double iva) {
+        super(name, 0, iva,1);   
     }
     
     @Override
@@ -27,7 +27,7 @@ public class CompositeProduct extends AbstractProduct {
     public double getPriceIva(){
         double price = 0d;
         for (AbstractProduct child : products) {
-            price += child.getPriceIva();   
+            price += child.getPrice() * iva;   
         }
         return price; 
     }

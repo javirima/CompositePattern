@@ -26,6 +26,7 @@ public class CompositeMain {
     private SimpleProduct monitor30inch;
     private SimpleProduct simpleMouse;
     private SimpleProduct gammerMouse;
+    private SimpleProduct descuento;
     
     private CompositeProduct gammerPC;
     private CompositeProduct homePC;
@@ -46,10 +47,11 @@ public class CompositeMain {
         monitor30inch = new SimpleProduct("Monitor 30'", 2000, "HP",0,1);
         simpleMouse = new SimpleProduct("Raton Simple", 150, "Genius",0.04,1);
         gammerMouse = new SimpleProduct("Raton Gammer", 750, "Alien",0.13,1);
-        
+        descuento = new SimpleProduct("Descuento", -100, "Descuento $100", 0, 1);
+
         //Computadora para Gammer que incluye 8gb de ram,disco de 1tb,procesador Intel i7          
         //Gabinete grande, monitor de 30' y un mouse gammer.
-        gammerPC = new CompositeProduct("Gammer PC");   
+        gammerPC = new CompositeProduct("Gammer PC",0.08);   
         gammerPC.addProduct(ram8gb);   
         gammerPC.addProduct(ram4gb);   
         gammerPC.addProduct(monitor30inch);   
@@ -59,7 +61,7 @@ public class CompositeMain {
         
         //Computadora para Casa que incluye 4gb de ram,disco de 500gb, procesador AMD Phenon         
         //Gabinete chico, monitor de 20' y un mouse simple.           
-        homePC = new CompositeProduct("Casa PC");
+        homePC = new CompositeProduct("Casa PC", 0.13);
         homePC.addProduct(ram4gb);
         homePC.addProduct(disk500gb);
         homePC.addProduct(cpuAMD);
@@ -68,8 +70,7 @@ public class CompositeMain {
         homePC.addProduct(simpleMouse);
         
         //Paque compuesto de dos paquetes: paquete Gammer PC y Home PC           
-        pc2x1 = new CompositeProduct("Paquete PC Gammer + Casa");   
-        pc2x1.addProduct(gammerPC);
+        pc2x1 = new CompositeProduct("Paquete PC Gammer + Casa", 0.08);
         pc2x1.addProduct(homePC);
     }
 
@@ -110,6 +111,7 @@ public class CompositeMain {
         customOrder.addProduct(monitor30inch);
         customOrder.addProduct(monitor30inch);
         customOrder.addProduct(gammerMouse);
+        customOrder.addProduct(descuento);
         customOrder.printOrder();
     }
         
@@ -117,9 +119,6 @@ public class CompositeMain {
         CompositeMain main = new CompositeMain();
         main.buildProducts();
         main.orderBig();
-
-        
-        
     }
     
 }
